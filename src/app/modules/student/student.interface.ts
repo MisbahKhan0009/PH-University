@@ -9,7 +9,7 @@ export type Guardian = {
   motherContactNo: string;
 };
 
-export type LocalGaurdian = {
+export type LocalGuardian = {
   name: string;
   occupation: string;
   contactNo: string;
@@ -18,7 +18,7 @@ export type LocalGaurdian = {
 
 export type UserName = {
   firstName: string;
-  middleName: string;
+  middleName?: string;
   lastName: string;
 };
 
@@ -34,7 +34,7 @@ export type Student = {
   presentAddress: string;
   permanentAddress: string;
   guardian: Guardian;
-  localGaurdian: LocalGaurdian;
+  LocalGuardian?: LocalGuardian;
   profileImg?: string;
   isActive: 'active' | 'blocked';
 };

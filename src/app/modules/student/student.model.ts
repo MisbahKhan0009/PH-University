@@ -2,7 +2,7 @@ import validator from 'validator';
 import { Schema, model, connect } from 'mongoose';
 import {
   Guardian,
-  LocalGaurdian,
+  localGuardian,
   Student,
   UserName,
 } from './student.interface';
@@ -12,12 +12,6 @@ const userNameSchema = new Schema<UserName>({
     type: String,
     trim: true,
     required: [true, 'First name is required.'],
-    validate: {
-      validator: function (value: string) {
-        const firstNameStr = value.charAt(0).toUpperCase() + value.slice(1);
-        return firstNameStr === value;
-      },
-    },
     message: '{VALUE} is not a valid first name.',
   },
   middleName: {
@@ -29,10 +23,6 @@ const userNameSchema = new Schema<UserName>({
     type: String,
     trim: true,
     required: [true, 'Last name is required.'],
-    validate: {
-      validator: (value: string) => validator.isAlpha(value),
-      message: '{VALUE} is not a valid last name.',
-    },
   },
 });
 
@@ -139,7 +129,7 @@ const studentSchema = new Schema<Student>({
     type: guardianSchema,
     required: [true, 'Guardian information is required.'],
   },
-  localGaurdian: {
+  localGuardian: {
     type: LocalGaurdianSchema,
     required: [true, 'Local guardian information is required.'],
   },
